@@ -11,8 +11,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Change to Ansible directory and clone Ansible Repo
-      run: cd ansible && git clone https://github.com/rubrikinc/rubrik-modules-for-ansible.git
+      run: git clone https://github.com/rubrikinc/rubrik-modules-for-ansible.git
     - name: Stage Ansible files
-      run: cd ansible/rubrik-modules-for-ansible/ && cp -R rubrikinc ../.. && cp ansible.cfg ../..    
+      run: cd rubrik-modules-for-ansible/ && cp -R rubrikinc .. && cp ansible.cfg ..    
     - name: Run ansible-lint
       run: ansible-lint -v *.yaml
