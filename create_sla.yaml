@@ -14,6 +14,6 @@
         daily_frequency: 1
         daily_retention: 30
         monthly_frequency: 1
-        monthly_retention: 12
+        monthly_retention: 24
         yearly_frequency: 1
         yearly_retention: 5
