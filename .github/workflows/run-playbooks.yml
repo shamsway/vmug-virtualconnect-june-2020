@@ -25,7 +25,7 @@ jobs:
     - name: Post Message to Slack
       run: ~/slack.sh -h ${{ secrets.SLACK_WEBHOOK }}  -u GitHubActions -i unicorn_face -c Ansible  -p enable -m 'Creating SLA Domain *${{ secrets.RUBRIK_SLA_NAME }}* on *${{ secrets.RUBRIK_CDM_NODE_IP }}*'             
     - name: Run Ansible Playbook to create new SLA Domain
-      run: ansible-playbook --verbose ansible/create_sla.yaml
+      run: ansible-playbook --verbose create_sla.yaml
       env:
         rubrik_cdm_node_ip: ${{ secrets.RUBRIK_CDM_NODE_IP }}
         rubrik_cdm_token: ${{ secrets.RUBRIK_CDM_TOKEN }}
@@ -34,7 +34,7 @@ jobs:
     - name: Post Message to Slack
       run: ~/slack.sh -h ${{ secrets.SLACK_WEBHOOK }}  -u GitHubActions -i unicorn_face -c Ansible  -p enable -m 'Cloning VM template to *${{ secrets.VMNAME }}*'             
     - name: Run Ansible Playbook to clone VM
-      run: ansible-playbook --verbose ansible/clone_template.yaml
+      run: ansible-playbook --verbose clone_template.yaml
       env:
         VMWARE_USER: ${{ secrets.VMWARE_USER }}
         VMWARE_PASSWORD: ${{ secrets.VMWARE_PASSWORD }}
@@ -46,7 +46,7 @@ jobs:
     - name: Post Message to Slack
       run: ~/slack.sh -h ${{ secrets.SLACK_WEBHOOK }}  -u GitHubActions -i unicorn_face -c Ansible  -p enable -m 'Refreshing vSphere metadata on *${{ secrets.RUBRIK_CDM_NODE_IP }}*'                 
     - name: Run Ansible Playbook to refresh vCenter
-      run: ansible-playbook -vvv ansible/refresh_vcenter.yaml && sleep 90
+      run: ansible-playbook -vvv refresh_vcenter.yaml && sleep 90
       env:
         rubrik_cdm_node_ip: ${{ secrets.RUBRIK_CDM_NODE_IP }}
         rubrik_cdm_token: ${{ secrets.RUBRIK_CDM_TOKEN }}
@@ -54,7 +54,7 @@ jobs:
     - name: Post Message to Slack
       run: ~/slack.sh -h ${{ secrets.SLACK_WEBHOOK }}  -u GitHubActions -i unicorn_face -c Ansible  -p enable -m 'Assign SLA Domain *${{ secrets.RUBRIK_SLA_NAME }}* to *${{ secrets.VMNAME }}*'
     - name: Run Ansible Playbook to protect VM
-      run: ansible-playbook -vvv ansible/protect_vm.yaml
+      run: ansible-playbook -vvv protect_vm.yaml
       env:
         rubrik_cdm_node_ip: ${{ secrets.RUBRIK_CDM_NODE_IP }}
         rubrik_cdm_token: ${{ secrets.RUBRIK_CDM_TOKEN }}
