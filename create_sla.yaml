@@ -1,5 +1,5 @@
 ---
-this should fail
+
 - hosts: localhost
   connection: local
   gather_facts: false
@@ -16,4 +16,4 @@ this should fail
         monthly_frequency: 1
         monthly_retention: 24
         yearly_frequency: 1
-        yearly_retention: 5
+        yearly_retention: 6
